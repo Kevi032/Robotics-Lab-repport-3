@@ -1,0 +1,24 @@
+//Include the LCD library to the Arduino
+#include <LiquidCrystal.h>
+//initialize the following LCD pins: RS, EN, D4,D5,D6,D7 with the Arduino digital pins
+const int rs = 12, en = 11, D4 = 5, D5 = 4, D6 = 3, D7 = 2;
+LiquidCrystal lcd(rs, en, D4, D5, D6, D7);
+
+void setup() {
+//  setup code to run once
+ Serial.begin (9600);
+ lcd.begin (16,2)
+ lcd.print ("voltage");
+ lcd.print ("BitVal");
+  }
+
+void loop() {
+ //  setup code to run repeatedly
+int sensorValue = analogRead (A0);
+float voltage = sensorValue*0.0049;
+lcd.setCursor(0,1);
+lcd.print (voltage);
+lcd.print ("   ");
+lcd.print (sensorValue);
+  }
+}
